@@ -1,0 +1,9 @@
+{
+    "name": "Search",
+    "description": "Search engines for Telegram",
+    "version": "0.1",
+    "default_enable": ["Search"],
+    "homepage": "https://github.com/asdofindia/telegram-pybot-search",
+    "repo": "https://github.com/asdofindia/telegram-pybot-search.git",
+    "branch": "master"
+}
