@@ -14,7 +14,7 @@ class SearchPlugin(plugintypes.TelegramPlugin):
     }
 
     usage = [
-        "/google: google search",
+        "/google <query>: google search",
     ]
 
     def __init__(self):
@@ -28,7 +28,6 @@ class SearchPlugin(plugintypes.TelegramPlugin):
         #query = raw_input ( 'Query: ' )
         query=matches.group(1)
         # print "going to google %s" % query
-        query = urllib.urlencode ( { 'q' : query } )
         params = {
             'q': query,
         }
