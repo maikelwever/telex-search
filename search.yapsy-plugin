@@ -1,9 +1,9 @@
 [Core]
-Name = FSMK
-Module = fsmk
+Name = Search
+Module = search
 
 [Documentation]
 Author = Akshay S Dinesh
 Version = 0.1
-Website = https://github.com/asdofindia/telegram-pybot-fsmk
-Description = FSMK tools for Telegram
+Website = https://github.com/asdofindia/telegram-pybot-search
+Description = Search engines for Telegram
