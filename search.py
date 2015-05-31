@@ -1,10 +1,8 @@
-import plugintypes
-import tgl
-from telegrambot.utils.decorators import group_only
+from telegrambot import plugin
 import requests
 import json
 
-class SearchPlugin(plugintypes.TelegramPlugin):
+class SearchPlugin(plugin.TelegramPlugin):
     """
     Search engines
     """
