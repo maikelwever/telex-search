@@ -18,7 +18,7 @@ class SearchPlugin(plugin.TelegramPlugin):
     usage = [
         "/google <query>: google search",
         "/duck <query>: duckduckgo top result",
-        "/duck 5 <query>" DDG top 5 results (upto 20)",
+        "/duck 5 <query>: DDG top 5 results (upto 20)",
         "/ddg <query>: DDG instant answer",
     ]
 
