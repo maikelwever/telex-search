@@ -1,6 +1,7 @@
 from telegrambot import plugin
 import requests
 import json
+from bs4 import BeautifulSoup
 
 class SearchPlugin(plugin.TelegramPlugin):
     """
@@ -9,10 +10,12 @@ class SearchPlugin(plugin.TelegramPlugin):
 
     patterns = {
         "^/google (.*)":"google",
+        "^/duck (.*)": "duck",
     }
 
     usage = [
         "/google <query>: google search",
+        "/duck <query>: duckduckgo",
     ]
 
     def __init__(self):
@@ -37,3 +40,20 @@ class SearchPlugin(plugin.TelegramPlugin):
             title=title.translate({ord(k):None for k in u'</b>'})
             returnval += title + ' ; ' + url + '\n'
         return returnval
+
+    def duck(self, msg, matches):
+        '''Returns results of a DDG search'''
+        query = matches.group(1)
+        params = {
+            'q': query,
+        }
+        response = requests.post('https://duckduckgo.com/html/', params = params).text
+        soup = BeautifulSoup(response)
+        links = soup.findAll('div', {"class": "links_main links_deep"})
+        reply = "DuckDuckGo results for %s\n" % query
+        for link in links[:7]:
+            title = link.a.text.replace("<b>","").replace("</b>","")
+            url = link.a['href']
+            # snippet = link.div.text.replace("<b>","").replace("</b>","")
+            reply += "%s ~ %s\n" % (title, url)
+        return reply
