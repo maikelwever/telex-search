@@ -17,7 +17,8 @@ class SearchPlugin(plugin.TelegramPlugin):
 
     usage = [
         "/google <query>: google search",
-        "/duck <query>: duckduckgo",
+        "/duck <query>: duckduckgo top result",
+        "/duck 5 <query>" DDG top 5 results (upto 20)",
         "/ddg <query>: DDG instant answer",
     ]
 
@@ -47,6 +48,15 @@ class SearchPlugin(plugin.TelegramPlugin):
     def duck(self, msg, matches):
         '''Returns results of a DDG search'''
         query = matches.group(1)
+        n = query.split()[0]
+        try:
+            n = min(20, int(n))  # will be later used to limit the results
+            query = ''.join(query.split()[1:])
+            if query == "":
+                return "No, you go ask your math teacher."
+        except ValueError:
+            n = 1
+
         params = {
             'q': query,
         }
@@ -54,11 +64,13 @@ class SearchPlugin(plugin.TelegramPlugin):
         soup = BeautifulSoup(response)
         links = soup.findAll('div', {"class": "links_main links_deep"})
         reply = "DuckDuckGo results for %s\n" % query
-        for link in links[:7]:
+        for link in links[:n]:
             title = link.a.text.replace("<b>","").replace("</b>","")
             url = link.a['href']
-            # snippet = link.div.text.replace("<b>","").replace("</b>","")
+            snippet = link.div.text.replace("<b>","").replace("</b>","")
             reply += "%s ~ %s\n" % (title, url)
+            if n == 1:
+                reply += snippet
         return reply
 
     def ddgia(self, msg, matches):
