@@ -19,7 +19,6 @@ class SearchPlugin(plugin.TelegramPlugin):
         super().__init__()
 
 
-    @group_only
     def google(self, msg, matches):
         '''Returns the link and the description of the first result from a google search
         '''
