@@ -1,10 +1,10 @@
-from telegrambot import plugin
+from telex import plugin
 import requests
 import json
 from bs4 import BeautifulSoup
 import duckduckgo as ddg
 
-class SearchPlugin(plugin.TelegramPlugin):
+class SearchPlugin(plugin.TelexPlugin):
     """
     Search engines
     """
