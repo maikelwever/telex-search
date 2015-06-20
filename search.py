@@ -10,16 +10,16 @@ class SearchPlugin(plugin.TelexPlugin):
     """
 
     patterns = {
-        "^!google (.*)":"google",
-        "^!duck (.*)": "duck",
-        "^!ddg (.*)": "ddgia",
+        "^{prefix}google (.*)":"google",
+        "^{prefix}duck (.*)": "duck",
+        "^{prefix}ddg (.*)": "ddgia",
     }
 
     usage = [
-        "!google <query>: google search",
-        "!duck <query>: duckduckgo top result",
-        "!duck 5 <query>: DDG top 5 results (upto 20)",
-        "!ddg <query>: DDG instant answer",
+        "{prefix}google <query>: google search",
+        "{prefix}duck <query>: duckduckgo top result",
+        "{prefix}duck 5 <query>: DDG top 5 results (upto 20)",
+        "{prefix}ddg <query>: DDG instant answer",
     ]
 
     def __init__(self):
